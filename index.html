@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover">
   <title>📘 Biblioteca da Princesa Gabriela</title>
   <!-- Font Awesome, Google Fonts e PDF.js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -351,6 +351,154 @@
       border-top: 2px solid #2a5ac9;
       color: #0b2552;
     }
+
+/* ========== RESPONSIVIDADE PARA CELULAR ========== */
+@media (max-width: 640px) {
+  body {
+    padding: 10px 8px 20px;
+  }
+
+  .royal-header {
+    padding: 12px 16px;
+    border-radius: 30px;
+  }
+  .header-title h1 {
+    font-size: 1.4rem;
+  }
+  .crown-badge {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .add-button {
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .book-form-panel {
+    padding: 20px 16px;
+    border-radius: 28px;
+  }
+  .form-grid {
+    gap: 16px;
+  }
+  .btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .filter-chip {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .book-card {
+    padding: 12px;
+    border-radius: 20px;
+  }
+  .book-title {
+    font-size: 1rem;
+  }
+  .icon-btn {
+    padding: 8px 6px;
+    font-size: 0.8rem;
+  }
+
+  /* Leitor */
+  .reader-toolbar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .reader-toolbar button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  #readerBookTitle {
+    font-size: 0.9rem;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #pdfViewerContainer {
+    padding: 8px;
+  }
+
+  /* Barra Kindle menor no mobile */
+  .kindle-toolbar {
+    padding: 8px 12px;
+    gap: 10px;
+    bottom: 15px;
+  }
+  .kindle-toolbar .color-option {
+    width: 36px;
+    height: 36px;
+  }
+  .kindle-toolbar .action-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Painel de reflexões mais largo e centralizado */
+  .reflections-panel {
+    width: 90%;
+    right: 5%;
+    top: 50px;
+    max-height: 80vh;
+  }
+  .reflections-header {
+    padding: 12px;
+  }
+  .reflections-list {
+    max-height: calc(80vh - 50px);
+  }
+
+  /* Tooltip de hover (só aparece em desktop, então tudo bem) */
+  .hover-note-tooltip {
+    max-width: 200px;
+    font-size: 0.8rem;
+  }
+
+  /* Footer */
+  .simple-footer {
+    padding: 8px 6px;
+    margin-top: 20px;
+  }
+  .footer-verse {
+    font-size: 0.85rem;
+  }
+  .footer-love {
+    font-size: 0.8rem;
+  }
+  .footer-motto {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ajustes para telas muito pequenas (ex: iPhone SE) */
+@media (max-width: 380px) {
+  .header-title h1 {
+    font-size: 1.2rem;
+  }
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  .kindle-toolbar {
+    gap: 6px;
+  }
+  .kindle-toolbar .color-option {
+    width: 32px;
+    height: 32px;
+  }
+}
+
   </style>
 </head>
 <body>
