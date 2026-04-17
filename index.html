@@ -786,15 +786,44 @@
     closeBtn.onclick = () => overlay.style.display = 'none';
     toggleHighlightsBtn.onclick = () => { showHighlights = !showHighlights; renderPage(currentPageNum); };
 
-    let touchStartX = 0;
-    canvas.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-    canvas.addEventListener('touchend', (e) => {
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) > 60) {
-        if (diff < 0 && currentPageNum < totalPages) { currentPageNum++; renderPage(currentPageNum); }
-        else if (diff > 0 && currentPageNum > 1) { currentPageNum--; renderPage(currentPageNum); }
-      }
-    });
+// Swipe para virar páginas (melhorado para mobile)
+let touchStartX = 0;
+let touchStartY = 0;
+let touchStartTime = 0;
+const SWIPE_THRESHOLD = 50; // distância mínima para considerar swipe
+const SWIPE_MAX_TIME = 300; // tempo máximo (ms) para considerar swipe rápido
+const container = document.getElementById('pdfViewerContainer');
+
+container.addEventListener('touchstart', (e) => {
+  const touch = e.changedTouches[0];
+  touchStartX = touch.screenX;
+  touchStartY = touch.screenY;
+  touchStartTime = Date.now();
+}, { passive: true });
+
+container.addEventListener('touchend', (e) => {
+  const touch = e.changedTouches[0];
+  const diffX = touch.screenX - touchStartX;
+  const diffY = touch.screenY - touchStartY;
+  const elapsed = Date.now() - touchStartTime;
+  
+  // Só considera swipe se o movimento horizontal for maior que vertical
+  // e se a distância e o tempo atenderem aos critérios
+  if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > SWIPE_THRESHOLD && elapsed < SWIPE_MAX_TIME) {
+    // Evita que o swipe ative a barra de ferramentas
+    kindleToolbar.style.display = 'none';
+    
+    if (diffX < 0 && currentPageNum < totalPages) {
+      // Swipe para esquerda -> próxima página
+      currentPageNum++;
+      renderPage(currentPageNum);
+    } else if (diffX > 0 && currentPageNum > 1) {
+      // Swipe para direita -> página anterior
+      currentPageNum--;
+      renderPage(currentPageNum);
+    }
+  }
+});
 
     // Exibe a barra estilo Kindle quando houver texto selecionado
     function showKindleToolbar() {
