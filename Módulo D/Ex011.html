@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pais</title>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <h1>Qual o seu país?</h1>
+    <p>Digite o país que você nasceu: <input type="text" name="pai" id="pai"onchange="verificar()"></p>
+    <div id="resp">
+
+    </div>
+    <script>
+        var pais = window.document.getElementById('pai')
+        var res = window.document.getElementById('resp')
+        function verificar() {
+            if(pais.value == 'Brasil' || pais.value == 'brasil'){
+                res.innerHTML = `<p>Você é Brasileiro!</p>`
+            }
+            else{
+                res.innerHTML = `<p>Você é Estrangeiro!</p>`
+            }
+        }
+    </script>
+</body>
+</html>
